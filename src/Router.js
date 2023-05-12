@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import New from './pages/New';
 import Diary from './pages/Diary';
 import Edit from './pages/Edit';
-import { act } from 'react-dom/test-utils';
 
 const reducer = (state, action) => {
   let newState = [];
@@ -35,8 +34,18 @@ const reducer = (state, action) => {
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
+const dummyDate = [
+  { id: 1, emotion: 1, content: '오늘의 일기 1번', date: 1683874746416 },
+  { id: 2, emotion: 2, content: '오늘의 일기 2번', date: 1683874746417 },
+  { id: 3, emotion: 3, content: '오늘의 일기 3번', date: 1683874746418 },
+  { id: 4, emotion: 4, content: '오늘의 일기 4번', date: 1683874746419 },
+  { id: 5, emotion: 5, content: '오늘의 일기 5번', date: 1683874746420 },
+  { id: 6, emotion: 1, content: '오늘의 일기 6번', date: 1783874746420 },
+];
+
 const Router = () => {
-  const [data, dispatch] = useReducer(reducer, []);
+  console.log(new Date().getTime());
+  const [data, dispatch] = useReducer(reducer, dummyDate);
 
   const dataId = useRef(0);
 
@@ -81,7 +90,7 @@ const Router = () => {
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
               <Route path="/diary/:id" element={<Diary />} />
-              <Route path="/edit" element={<Edit />} />
+              <Route path="/edit/:id" element={<Edit />} />
             </Routes>
           </div>
         </BrowserRouter>
