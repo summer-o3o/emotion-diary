@@ -50,7 +50,7 @@ const DiaryList = ({ diaryList }) => {
   const [sortType, setSortType] = useState('latest');
   const [filter, setFilter] = useState('all');
 
-  const getProcesessedDiaryList = item => {
+  const getProcesessedDiaryList = () => {
     const filterCallBack = item => {
       if (filter === 'good') {
         return parseInt(item.emotion) <= 3;
@@ -61,9 +61,9 @@ const DiaryList = ({ diaryList }) => {
 
     const compare = (a, b) => {
       if (sortType === 'latest') {
-        return parseInt(a.date) - parseInt(b.date);
-      } else {
         return parseInt(b.date) - parseInt(a.date);
+      } else {
+        return parseInt(a.date) - parseInt(b.date);
       }
     };
     const copyList = JSON.parse(JSON.stringify(diaryList));
