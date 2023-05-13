@@ -44,7 +44,6 @@ const dummyDate = [
 ];
 
 const Router = () => {
-  console.log(new Date().getTime());
   const [data, dispatch] = useReducer(reducer, dummyDate);
 
   const dataId = useRef(0);
@@ -83,7 +82,7 @@ const Router = () => {
 
   return (
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={(onCreate, onEdit, onRemove)}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
         <BrowserRouter>
           <div className="App">
             <Routes>
