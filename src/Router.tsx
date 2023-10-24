@@ -4,8 +4,9 @@ import Home from './pages/Home';
 import New from './pages/New';
 import Diary from './pages/Diary';
 import Edit from './pages/Edit';
+import { DiaryTypes, OnCreateTypes } from './types/types';
 
-const reducer = (state, action) => {
+const reducer = (state: string, action: string) => {
   let newState = [];
   switch (action.type) {
     case 'INIT': {
@@ -53,7 +54,7 @@ const Router = () => {
   const dataId = useRef(0);
 
   //CREATE
-  const onCreate = (date, content, emotion) => {
+  const onCreate = (date: number, content: string, emotion: number) => {
     dispatch({
       type: 'CREATE',
       data: {
@@ -67,12 +68,17 @@ const Router = () => {
   };
 
   // REMOVE
-  const onRemove = targetId => {
+  const onRemove = (targetId: number) => {
     dispatch({ type: 'REMOVE', targetId });
   };
 
   //EDIT
-  const onEdit = (targetId, data, content, emotion) => {
+  const onEdit = (
+    targetId: number,
+    data: number,
+    content: string,
+    emotion: number
+  ) => {
     dispatch({
       type: 'EDIT',
       data: {

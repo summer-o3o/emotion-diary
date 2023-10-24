@@ -1,4 +1,8 @@
-const MyButton = ({ text, type, onClick }) => {
+import { ButtonTypes } from '../types/types';
+
+const MyButton = (props: ButtonTypes) => {
+  const { text, type, onClick } = props;
+
   const btnType = ['positive', 'negative'].includes(type) ? type : 'default';
   return (
     <button

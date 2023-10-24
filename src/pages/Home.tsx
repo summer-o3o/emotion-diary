@@ -3,11 +3,12 @@ import { DiaryStateContext } from '../Router';
 import MyHeader from '../components/MyHeader';
 import MyButton from '../components/MyButton';
 import DiaryList from '../components/DiaryList';
+import { DiaryTyoe } from '../types/types';
 
 const Home = () => {
   const diaryList = useContext(DiaryStateContext);
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<DiaryTyoe[]>([]);
   const [curDate, setCurDate] = useState(new Date());
   const headeText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1} 월`;
 
@@ -38,6 +39,8 @@ const Home = () => {
       );
     }
   }, [diaryList, curDate]);
+  console.log('data', data);
+  console.log('diaryList', diaryList);
 
   const increaseMonth = () => {
     setCurDate(

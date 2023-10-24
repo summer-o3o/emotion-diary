@@ -1,4 +1,8 @@
-const MyHeader = ({ leftChild, headText, rightChild }) => {
+import { HeaderTypes } from '../types/types';
+
+const MyHeader = (props: HeaderTypes) => {
+  const { leftChild, headText, rightChild } = props;
+
   return (
     <header>
       <div className="head_btn_left">{leftChild}</div>

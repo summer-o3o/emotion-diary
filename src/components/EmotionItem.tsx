@@ -1,12 +1,10 @@
 import React from 'react';
+import { EmotionItemTypes } from '../types/types';
 
-const EmotionItem = ({
-  emotion_id,
-  emotion_img,
-  emotion_descript,
-  onClick,
-  isSelected,
-}) => {
+const EmotionItem = (props: EmotionItemTypes) => {
+  const { emotion_id, emotion_img, emotion_descript, onClick, isSelected } =
+    props;
+
   return (
     <div
       className={[

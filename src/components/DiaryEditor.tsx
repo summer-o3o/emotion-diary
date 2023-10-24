@@ -1,29 +1,26 @@
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-} from 'react';
+import { useContext, useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DiaryDispatchContext } from '../Router';
 
 import { getStringDate } from '../util/date';
 import { emotionList } from '../util/emotion';
+import { DiaryEditorTypes } from '../types/types';
 
 import MyHeader from './MyHeader';
 import MyButton from './MyButton';
 import EmotionItem from './EmotionItem';
 
-const DiaryEditor = ({ isEdit, originData }) => {
+const DiaryEditor = (props: DiaryEditorTypes) => {
+  const { isEdit, originData } = props;
+
   const contentRef = useRef();
-  const [content, setContent] = useState('');
-  const [emotion, setEmotion] = useState(3);
-  const [date, setDate] = useState(getStringDate(new Date()));
+  const [content, setContent] = useState<string>('');
+  const [emotion, setEmotion] = useState<number>(3);
+  const [date, setDate] = useState<string>(getStringDate(new Date()));
 
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
 
-  const handleClickEmote = useCallback(emotion => {
+  const handleClickEmote = useCallback((emotion: Number) => {
     setEmotion(emotion);
   }, []);
   const navigate = useNavigate();
@@ -56,7 +53,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   useEffect(() => {
     if (isEdit) {
-      setDate(getStringDate(new Date(parseInt(originData.date))));
+      setDate(getStringDate(new Date(originData.date)));
       setEmotion(originData.emotion);
       setContent(originData.content);
     }
